@@ -35,3 +35,10 @@
     #* * * * * python /etc/Dumnik/btcmdschd.py
     #* * * * * ( sleep 20 ; python /etc/Dumink/btcmdschd.py )
     #* * * * * ( sleep 20 ; python /etc/Dumink/btcmdschd.py )
+
+Как спарить bluetooth в debian:
+sudo bluetoothctl -a
+[bluetooth]# scan on
+[bluetooth]# devices
+[bluetooth]# pair 00:12:A1:70:42:28
+[agent] PIN code: 828198
