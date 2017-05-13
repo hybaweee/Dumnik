@@ -1,6 +1,9 @@
-#include <SoftwareSerial.h>
-#include <Wire.h>
-#include <Adafruit_BMP085.h>
+// #include "..\Libraries\SoftwareSerial.h"
+// #include "..\Libraries\Wire.h"
+// #include "..\Libraries\Adafruit_BMP085.h"
+#include "SoftwareSerial.h"
+#include "Wire.h"
+#include "Adafruit_BMP085.h"
 
 const int pinRx = 8;
 const int pinTx = 9;
