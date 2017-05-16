@@ -15,10 +15,13 @@ def GetResponse(bt):
 
 def SendCommand(mac, port, command):
     bt = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+    resp = ""
     try:
         bt.connect((mac, int(port)))
         bt.send(command)
         resp = GetResponse(bt)
+    except:
+        pass
     finally:
         bt.close()
     return resp
