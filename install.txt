@@ -42,3 +42,13 @@ sudo bluetoothctl -a
 [bluetooth]# devices
 [bluetooth]# pair 00:12:A1:70:42:28
 [agent] PIN code: 828198
+
+Как настроить резервное копирование БД:
+For example, the pg_dump command in following cron job will not work:
+5 0 * * * pg_dump -U username -Fc dbname > ~/backup/database/mydb_backup.gz
+Fortunately, Postgresql has a Password File ‘.pgpass‘ feature that we can use to overcome this problem. Create a ~/.pgpass file in user’s home directory with the following format:
+hostname:port:database:username:password
+Ex: localhost:5432:mydatabase:lorenz:lorensxyz
+Then don’t forget to change its’ permission to 0600 (chmod 0600 ~/.pgpass). pg_dump will use the password from .pgpass file and the cronjob will work successfully
+добавить в cron:
+0 0 * * *  pg_dump --username=backup_user --oids smart_home | gzip > /mnt/backup/dumnik/dumnik_dump.sql.qz
