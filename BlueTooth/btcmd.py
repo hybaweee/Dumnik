@@ -21,7 +21,7 @@ def SendCommand(mac, port, command):
         bt.send(command)
         resp = GetResponse(bt)
     except:
-        pass
+        foo = GetResponse(bt)
     finally:
         bt.close()
     return resp
