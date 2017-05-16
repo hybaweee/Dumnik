@@ -10,6 +10,7 @@ const int pinTx = 9;
 
 const char BT_SEPARATOR = ';';
 const String BT_COMMAND_GETTEMPERATURE = "GetTemperature";
+const String BT_COMMAND_GETPRESSURE = "GetPressure";
 const String BT_COMMAND_RESULT_OK = "OK";
 const String BT_COMMAND_RESULT_ERROR = "ERROR";
 
@@ -89,6 +90,10 @@ String CommandDo(String btCommandName, String btCommandArgument)
   {
     result = CommandDoGetTemperature();
   }
+  else if (btCommandName == BT_COMMAND_GETPRESSURE)
+  {
+    result = CommandDoGetPressure();
+  }
   else
   {
     result = BT_COMMAND_RESULT_ERROR + ";Command '" + btCommandName + "' is unrecognized";
@@ -104,6 +109,15 @@ String CommandDoGetTemperature()
   stat = bmp.readTemperature();
       
   return BT_COMMAND_RESULT_OK + ";" + BT_COMMAND_GETTEMPERATURE + ";" + stat;
+}
+
+String CommandDoGetPressure()
+{
+  String stat = "";
+  
+  stat = bmp.readPressure() / 133.3;
+      
+  return BT_COMMAND_RESULT_OK + ";" + BT_COMMAND_GETPRESSURE + ";" + stat;
 }
 
 void CommandSendConfirmation(String btCommandResult)
